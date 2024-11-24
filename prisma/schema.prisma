@@ -1,0 +1,48 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Feature {
+  id          String   @id @default(cuid())
+  name        String
+  description String
+  priority    Float
+  status      String
+  impact      Float
+  effort      Float
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Feedback {
+  id        String   @id @default(cuid())
+  text      String
+  sentiment String
+  source    String
+  createdAt DateTime @default(now())
+}
+
+model BusinessMetric {
+  id       String   @id @default(cuid())
+  name     String
+  value    Float
+  trend    Float
+  category String
+  period   String
+  date     DateTime @default(now())
+}
+
+model TeamMember {
+  id          String   @id @default(cuid())
+  name        String
+  role        String
+  performance Float
+  goals       String[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
