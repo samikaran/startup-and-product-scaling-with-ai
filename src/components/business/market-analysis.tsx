@@ -225,7 +225,12 @@ export default function MarketAnalysis() {
                   <XAxis dataKey="competitor" />
                   <YAxis />
                   <Tooltip
-                    formatter={(value) => `$${(value / 1000000).toFixed(1)}M`}
+                    formatter={(value: number | string) => {
+                      if (typeof value === "number") {
+                        return `$${(value / 1000000).toFixed(1)}M`;
+                      }
+                      return value;
+                    }}
                   />
                   <Legend />
                   <Bar dataKey="revenue" fill="#8884d8" name="Revenue" />
